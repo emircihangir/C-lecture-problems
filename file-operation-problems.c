@@ -112,15 +112,28 @@ int main(){
     // fclose(fptr);
     
     // Problem 6
-    char ad[50];
-    int vize, final;
-    FILE* fptr = fopen("Notlar.txt", "w");
+    // char ad[50];
+    // int vize, final;
+    // FILE* fptr = fopen("Notlar.txt", "w");
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     printf("%d. öğrencinin adını giriniz: ", (i + 1)); scanf("%s", ad);
+    //     printf("%d. öğrencinin vize notunu giriniz: ", (i + 1)); scanf("%d", &vize);
+    //     printf("%d. öğrencinin final notunu giriniz: ", (i + 1)); scanf("%d", &final);
+    //     fprintf(fptr, "%s\t%d\t%d\n", ad, vize,final);
+    // }
+    
+    // Problem 7
+    FILE* fptr1 = fopen("Notlar.txt", "r");
+    FILE* fptr2 = fopen("NotlarOrtalama.txt", "w");
+    char currentLine[100];
     for (int i = 0; i < 5; i++)
     {
-        printf("%d. öğrencinin adını giriniz: ", (i + 1)); scanf("%s", ad);
-        printf("%d. öğrencinin vize notunu giriniz: ", (i + 1)); scanf("%d", &vize);
-        printf("%d. öğrencinin final notunu giriniz: ", (i + 1)); scanf("%d", &final);
-        fprintf(fptr, "%s\t%d\t%d\n", ad, vize,final);
+        char ad[100];
+        int vize, final;
+        fscanf(fptr1, "%s\t%d\t%d", ad, &vize, &final);
+        float avg = vize * 0.4 + final * 0.6;
+        fprintf(fptr2, "%s\t%d\t%d\t%f\n", ad, vize, final, avg);
     }
     
     return 0;
