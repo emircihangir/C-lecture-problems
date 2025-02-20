@@ -137,16 +137,23 @@ int main(){
     // }
     
     // Problem 2 - 1
-    FILE* fptr = fopen("randomNumber.txt", "r");
-    FILE* fptrO = fopen("tekSayilar.txt", "w");
-    FILE* fptrE = fopen("ciftSayilar.txt", "w");
+    // FILE* fptr = fopen("randomNumber.txt", "r");
+    // FILE* fptrO = fopen("tekSayilar.txt", "w");
+    // FILE* fptrE = fopen("ciftSayilar.txt", "w");
+    // int currentNumber;
+    // for(int i = 0; i < 50; i++){
+    //     fscanf(fptr, "%d", &currentNumber);
+    //     if((currentNumber % 2) == 0) fprintf(fptrE, "%d ", currentNumber);
+    //     else fprintf(fptrO, "%d ", currentNumber);
+    // }
 
-    int currentNumber;
-    for(int i = 0; i < 50; i++){
-        fscanf(fptr, "%d", &currentNumber);
-        if((currentNumber % 2) == 0) fprintf(fptrE, "%d ", currentNumber);
-        else fprintf(fptrO, "%d ", currentNumber);
+    // Problem 2 - 2
+    FILE* fptr = fopen("2-3-file.txt", "w");
+    for (int i = 1; i <= 8; i++)
+    {
+        for (int j = 0; j <= 2; j++) fprintf(fptr, "%d\t", (i + j));
+        fprintf(fptr, "\n");
     }
-
+    
     return 0;
 }
