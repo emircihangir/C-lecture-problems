@@ -124,17 +124,29 @@ int main(){
     // }
     
     // Problem 7
-    FILE* fptr1 = fopen("Notlar.txt", "r");
-    FILE* fptr2 = fopen("NotlarOrtalama.txt", "w");
-    char currentLine[100];
-    for (int i = 0; i < 5; i++)
-    {
-        char ad[100];
-        int vize, final;
-        fscanf(fptr1, "%s\t%d\t%d", ad, &vize, &final);
-        float avg = vize * 0.4 + final * 0.6;
-        fprintf(fptr2, "%s\t%d\t%d\t%f\n", ad, vize, final, avg);
-    }
+    // FILE* fptr1 = fopen("Notlar.txt", "r");
+    // FILE* fptr2 = fopen("NotlarOrtalama.txt", "w");
+    // char currentLine[100];
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     char ad[100];
+    //     int vize, final;
+    //     fscanf(fptr1, "%s\t%d\t%d", ad, &vize, &final);
+    //     float avg = vize * 0.4 + final * 0.6;
+    //     fprintf(fptr2, "%s\t%d\t%d\t%f\n", ad, vize, final, avg);
+    // }
     
+    // Problem 2 - 1
+    FILE* fptr = fopen("randomNumber.txt", "r");
+    FILE* fptrO = fopen("tekSayilar.txt", "w");
+    FILE* fptrE = fopen("ciftSayilar.txt", "w");
+
+    int currentNumber;
+    for(int i = 0; i < 50; i++){
+        fscanf(fptr, "%d", &currentNumber);
+        if((currentNumber % 2) == 0) fprintf(fptrE, "%d ", currentNumber);
+        else fprintf(fptrO, "%d ", currentNumber);
+    }
+
     return 0;
 }
