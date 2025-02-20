@@ -112,6 +112,16 @@ int main(){
     // fclose(fptr);
     
     // Problem 6
+    char ad[50];
+    int vize, final;
+    FILE* fptr = fopen("Notlar.txt", "w");
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d. öğrencinin adını giriniz: ", (i + 1)); scanf("%s", ad);
+        printf("%d. öğrencinin vize notunu giriniz: ", (i + 1)); scanf("%d", &vize);
+        printf("%d. öğrencinin final notunu giriniz: ", (i + 1)); scanf("%d", &final);
+        fprintf(fptr, "%s\t%d\t%d\n", ad, vize,final);
+    }
     
     return 0;
 }
