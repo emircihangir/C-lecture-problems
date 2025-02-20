@@ -6,7 +6,6 @@ typedef struct
     int yil, ay, gun;
 }tarih;
 
-
 typedef struct{
     char isim[100];
     float maas;
