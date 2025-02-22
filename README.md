@@ -1,0 +1,1 @@
+This repository contains codes that I've written for my C lecture assignments.
