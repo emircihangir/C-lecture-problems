@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 int getMax(int array[], int array_length)
 {
@@ -49,6 +50,17 @@ void removeNewlineChar(char* string){
     *(string + i) = 0;
 }
 
+void retrieveLG(char* rPtr, float grade){ // retrieve letter grade
+    char letters[5] = {'F', 'D', 'C', 'B', 'A'};
+    int gradeIntervals[5] = {44, 54, 69, 84, 100};
+    for(int i = 0; i < 5; i++){
+        if(grade <= gradeIntervals[i]){
+            *(rPtr) = letters[i];
+            *(rPtr + 1) = letters[i];
+            return;
+        }
+    }
+}
 int main(){
     srand(time(NULL));
     // Problem 1
@@ -148,12 +160,30 @@ int main(){
     // }
 
     // Problem 2 - 2
-    FILE* fptr = fopen("2-3-file.txt", "w");
-    for (int i = 1; i <= 8; i++)
-    {
-        for (int j = 0; j <= 2; j++) fprintf(fptr, "%d\t", (i + j));
-        fprintf(fptr, "\n");
-    }
+    // FILE* fptr = fopen("2-3-file.txt", "w");
+    // for (int i = 1; i <= 8; i++)
+    // {
+    //     for (int j = 0; j <= 2; j++) fprintf(fptr, "%d\t", (i + j));
+    //     fprintf(fptr, "\n");
+    // }
     
+    // Problem 2 - 3
+    FILE* fptr = fopen("Notlar.txt", "r");
+    FILE* fptr2 = fopen("Sonuclar.txt", "w");
+    char ad[50];
+    int vize, final;
+    for(int i = 0; i < 2; i++){
+        fscanf(fptr, "%s\t%d\t%d", ad, &vize, &final);
+        float avg = vize * 0.4 + final * 0.6;
+        char letterGrade[3];
+        retrieveLG(letterGrade, avg);
+        char status[10];
+        if(avg >= 55) strcpy(status, "GEÇTİ");
+        else strcpy(status, "KALDI");
+        fprintf(fptr2, "%s\t%d\t%d\t%f\t%s\t%s\n", ad, vize, final, avg, letterGrade, status);
+    }
+    fclose(fptr);
+    fclose(fptr2);
+
     return 0;
 }
