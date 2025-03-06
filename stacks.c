@@ -8,7 +8,7 @@ int top = -1;
 
 void printStack(){
     printf("stack: ");
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i <= top; i++)
     {
         printf(" %d", *(stack + i));
     }
@@ -23,8 +23,25 @@ void push(int item){
     stack[++top] = item;
 }
 
+void pop(){
+    if(top == -1){
+        printf("stack is empty.\n");
+        return;
+    }
+    top -= 1;
+}
+
 int main(){
     // Problem 1
+    // srand(time(NULL));
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     int number = rand() % 10 + 1;
+    //     push(number);
+    // }
+    // printStack();
+
+    // Problem 2
     srand(time(NULL));
     for (int i = 0; i < 10; i++)
     {
@@ -32,6 +49,11 @@ int main(){
         push(number);
     }
     printStack();
+    int input;
+    printf("how many to remove? "); scanf("%d", &input);
+    for (int i = 0; i < input; i++) pop();
+    printStack();
+    
 
     printf("\n");
     return 0;
