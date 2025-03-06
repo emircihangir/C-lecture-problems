@@ -12,7 +12,12 @@ typedef struct{
     tarih dogumTarihi;
 }personel;
 
-void YasHesapla(tarih t1, tarih bugun, tarih* sonuc){
+typedef struct{
+    char isim[100];
+    float bakiye;
+}musteri;
+
+void YasHesapla(tarih t1, tarih bugun){
     int toplamGun = (bugun.yil - t1.yil)*365 + (bugun.ay - t1.ay)*30 + (bugun.gun - t1.gun);
     int yilFark = (int)(toplamGun / 365);
     toplamGun -= yilFark * 365;
@@ -20,11 +25,19 @@ void YasHesapla(tarih t1, tarih bugun, tarih* sonuc){
     toplamGun -= ayFark * 30;
 
     tarih s = {yilFark, ayFark, toplamGun};
-    *sonuc = s;
+    printf("%d %d %d", s.yil, s.ay, s.gun);
+
+}
+
+void HesapListele(musteri* musteriler, int N){
+    printf("isim\tbakiye\n");
+    for (int i = 0; i < N; i++)
+    {
+        printf("%s\t%f\n", (musteriler + i)->isim, (musteriler + i)->bakiye);
+    }
 }
 
 int main(){
-
     // Problem 4
     // personel personeller[5];
     // for(int i = 0; i < 5; i++){
@@ -41,14 +54,29 @@ int main(){
     // }
 
     // Problem 5
-    tarih* sonuc = (tarih*)malloc(sizeof(tarih) * 1);
-    tarih t, bugun;
-    printf("bugünün tarihini giriniz (yıl.ay.gün): "); scanf("%d.%d.%d", &bugun.yil, &bugun.ay, &bugun.gun);
-    printf("doğum tarihinizi giriniz (yıl.ay.gün): "); scanf("%d.%d.%d", &t.yil, &t.ay, &t.gun);
+    // tarih* sonuc = (tarih*)malloc(sizeof(tarih) * 1);
+    // tarih t, bugun;
+    // printf("bugünün tarihini giriniz (yıl.ay.gün): "); scanf("%d.%d.%d", &bugun.yil, &bugun.ay, &bugun.gun);
+    // printf("doğum tarihinizi giriniz (yıl.ay.gün): "); scanf("%d.%d.%d", &t.yil, &t.ay, &t.gun);
+    // YasHesapla(t, bugun, sonuc);
+    // printf("%d yıl %d ay %d gün yaşındasınız.", sonuc->yil, sonuc->ay, sonuc->gun);
 
-    YasHesapla(t, bugun, sonuc);
-
-    printf("%d yıl %d ay %d gün yaşındasınız.", sonuc->yil, sonuc->ay, sonuc->gun);
+    // Problem 7
+    int N;
+    printf("kaç müşteri gireceksiniz? "); scanf("%d", &N);
+    musteri* musteriler = (musteri*)malloc(sizeof(musteri) * N);
+    float toplamBakiye = 0;
+    for (int i = 0; i < N; i++)
+    {
+        printf("%d. müşterinin ismini ve bakiyesini giriniz: ", (i + 1));
+        scanf("%s", (musteriler + i)->isim);
+        float bakiye;
+        scanf("%f", &bakiye);
+        (musteriler + i)->bakiye = bakiye;
+        toplamBakiye += bakiye;
+    }
+    HesapListele(musteriler, N);
+    printf("toplam bakiye: %f", toplamBakiye);
 
     printf("\n");
     return 0;
