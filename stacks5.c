@@ -24,6 +24,19 @@ char pop(){
 }
 
 int main(){
+    // char input[N];
+    // printf("isim giriniz: "); scanf("%s", input);
+    // int counter = 0;
+    // while(input[counter] != 0){
+    //     push(input[counter]);
+    //     counter += 1;
+    // }
+
+    // for (int i = 0; i < counter; i++)
+    // {
+    //     printf("%c", pop());
+    // }
+
     char input[N];
     printf("isim giriniz: "); scanf("%s", input);
     int counter = 0;
@@ -32,9 +45,20 @@ int main(){
         counter += 1;
     }
 
+    int isPalindrome = 1;
     for (int i = 0; i < counter; i++)
     {
-        printf("%c", pop());
+        char poppedItem = pop();
+        if(poppedItem != input[i]){
+            isPalindrome = 0;
+            break;
+        }
+    }
+
+    if(isPalindrome){
+        printf("palindromdur.");
+    } else {
+        printf("palindrom değildir.");
     }
     
     
