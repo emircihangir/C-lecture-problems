@@ -55,10 +55,10 @@ int main(){
     // printStack();
     
     // Problem 5
-    char input[50];
-    printf("enter a word: "); scanf("%s", input);
-    for (int i = 0; *(input + i) != 0; i++) push(*(input + i));
-    for (int i = 0; *(input + i) != 0; i++) printf("%c", pop());
+    // char input[50];
+    // printf("enter a word: "); scanf("%s", input);
+    // for (int i = 0; *(input + i) != 0; i++) push(*(input + i));
+    // for (int i = 0; *(input + i) != 0; i++) printf("%c", pop());
 
     printf("\n");
     return 0;
