@@ -95,7 +95,22 @@ int main(){
     //     printf("couldn't find %d", input);
     // }
 
-    
+    //* Question #5
+    // insertNode(1);
+    // insertNode(6);
+    // insertNode(2);
+    // insertNode(8);
+    // insertNode(23);
+    // printTheList();
+
+    // int input;
+    // printf("enter the index: "); scanf("%d", &input);
+
+    // Node* temp = head;
+    // for(int i = 0; i < input; i++) temp = temp->next;
+
+    // printf("the element with the index %d is %d", input, temp->data);
+
     printf("\n");
     return 0;
 }
