@@ -48,11 +48,8 @@ int main(){
                     insertAfter(currentNode, input);
                     break;
                 }
-                
                 currentNode = currentNode->next;
             }
-
-            
         }
 
         printList();
