@@ -43,12 +43,15 @@ int main(){
         if(head == NULL) headInsert(input);
         else{
             struct Node* currentNode = head;
-            while(1){
-                if((currentNode->next == NULL) || (currentNode->next->data > input)){
-                    insertAfter(currentNode, input);
-                    break;
+            if(input < head->data) headInsert(input);
+            else{
+                while(1){
+                    if((currentNode->next == NULL) || (currentNode->next->data > input)){
+                        insertAfter(currentNode, input);
+                        break;
+                    }
+                    currentNode = currentNode->next;
                 }
-                currentNode = currentNode->next;
             }
         }
 
