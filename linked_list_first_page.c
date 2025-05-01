@@ -55,6 +55,24 @@ int sumAllItems(){
     return sum;
 }
 
+void printR(Node* currentNode){
+    if(currentNode == NULL) return;
+
+    printf("%d ", currentNode->data);
+    if(currentNode->next != NULL) printf("-> ");
+    
+    printR(currentNode->next);
+}
+
+void printRreverse(Node* currentNode){
+    if(currentNode == NULL) return;
+
+    printRreverse(currentNode->next);
+
+    printf("%d ", currentNode->data);
+    if(currentNode != head) printf("-> ");
+}
+
 int main(){
     //* Questions #1-3
     // while(1){
@@ -110,6 +128,16 @@ int main(){
     // for(int i = 0; i < input; i++) temp = temp->next;
 
     // printf("the element with the index %d is %d", input, temp->data);
+
+    //* Question #9, #10
+    insertNode(1);
+    insertNode(6);
+    insertNode(2);
+    insertNode(8);
+    insertNode(23);
+    printR(head);
+    printf("\n");
+    printRreverse(head);
 
     printf("\n");
     return 0;
