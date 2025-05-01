@@ -2,20 +2,20 @@
 #include <stdlib.h>
 #include <time.h>
 
-typedef struct{
+struct Node{
     int data;
     struct Node* next;
-}Node;
+};
 
-Node* head = NULL;
+struct Node* head = NULL;
 
 void insertNode(int data){
-    Node* newNode = (Node*)malloc(sizeof(Node));
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
     newNode->next = NULL;
     if(head == NULL) head = newNode;
     else{
-        Node* lastNode = head;
+        struct Node* lastNode = head;
         while(lastNode->next != NULL) lastNode = lastNode->next;
     
         lastNode->next = newNode;
@@ -24,7 +24,7 @@ void insertNode(int data){
 
 void printTheList(){
     printf("Linked list: ");
-    Node* current = head;
+    struct Node* current = head;
     while(current != NULL){
         printf("%d", current->data);
         current = current->next;
@@ -33,44 +33,57 @@ void printTheList(){
     printf("\n");
 }
 
-int listLength(){
-    Node* current = head;
-    int length = 0;
-    while(current != NULL){
-        length += 1;
-        current = current->next;
-    }
-    return length;
-}
+// int listLength(){
+//     Node* current = head;
+//     int length = 0;
+//     while(current != NULL){
+//         length += 1;
+//         current = current->next;
+//     }
+//     return length;
+// }
 
-int sumAllItems(){
-    int sum = 0;
+// int sumAllItems(){
+//     int sum = 0;
 
-    Node* current = head;
-    while(current != NULL){
-        sum += current->data;
-        current = current->next;
-    }
+//     Node* current = head;
+//     while(current != NULL){
+//         sum += current->data;
+//         current = current->next;
+//     }
 
-    return sum;
-}
+//     return sum;
+// }
 
-void printR(Node* currentNode){
-    if(currentNode == NULL) return;
+// void printR(Node* currentNode){
+//     if(currentNode == NULL) return;
 
-    printf("%d ", currentNode->data);
-    if(currentNode->next != NULL) printf("-> ");
+//     printf("%d ", currentNode->data);
+//     if(currentNode->next != NULL) printf("-> ");
     
-    printR(currentNode->next);
-}
+//     printR(currentNode->next);
+// }
 
-void printRreverse(Node* currentNode){
-    if(currentNode == NULL) return;
+// void printRreverse(Node* currentNode){
+//     if(currentNode == NULL) return;
 
-    printRreverse(currentNode->next);
+//     printRreverse(currentNode->next);
 
-    printf("%d ", currentNode->data);
-    if(currentNode != head) printf("-> ");
+//     printf("%d ", currentNode->data);
+//     if(currentNode != head) printf("-> ");
+// }
+
+double listAverage(){
+    double average = 0;
+    int itemCount = 0;
+    struct Node* _node = head;
+    while(_node != NULL){
+        average += _node->data;
+        itemCount += 1;
+        _node = _node->next;
+    }
+    average /= itemCount;
+    return average;
 }
 
 int main(){
@@ -130,14 +143,52 @@ int main(){
     // printf("the element with the index %d is %d", input, temp->data);
 
     //* Question #9, #10
+    // insertNode(1);
+    // insertNode(6);
+    // insertNode(2);
+    // insertNode(8);
+    // insertNode(23);
+    // printR(head);
+    // printf("\n");
+    // printRreverse(head);
+
+    //* Question #12
+    insertNode(3);
+    insertNode(4);
     insertNode(1);
-    insertNode(6);
+    insertNode(5);
     insertNode(2);
-    insertNode(8);
-    insertNode(23);
-    printR(head);
-    printf("\n");
-    printRreverse(head);
+    printTheList();
+
+    double la = listAverage();
+    printf("list average: %f \n", la);
+
+    struct Node* _previousNode = NULL;
+    struct Node* _node = head;
+
+    while(_node != NULL){
+        if(_node->data < la){
+            if(_node == head){
+                // delete the head node.
+                struct Node* _nodesNext = _node->next;
+                free(_node);
+                _node = _nodesNext;
+                head = _nodesNext;
+                continue;
+            } else{
+                // delete the current node.
+                _previousNode->next = _node->next;
+                struct Node* _nodesNext = _node->next;
+                free(_node);
+                _node = _nodesNext;
+                continue;
+            }
+        }
+        _previousNode = _node;
+        _node = _node->next;
+    }
+
+    printTheList();
 
     printf("\n");
     return 0;
