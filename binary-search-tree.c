@@ -103,6 +103,25 @@ void addToAll(int n, TreeNode* currentNode){
     addToAll(n, currentNode->right);
 }
 
+void avg(TreeNode* currentNode, int* sum, int*count){
+    if(currentNode == NULL) return;
+
+    avg(currentNode->left, sum, count);
+
+    *sum += currentNode->data;
+    *count += 1;
+
+    avg(currentNode->right, sum, count);
+}
+
+void printAboveAvg(TreeNode* currentNode, float avg){
+    if(currentNode == NULL) return;
+
+    printAboveAvg(currentNode->left, avg);
+    if(currentNode->data > avg) printf("%d ", currentNode->data);
+    printAboveAvg(currentNode->right, avg);
+}
+
 int main(){
     // Problem 1
     // insertNode(5);
@@ -158,18 +177,31 @@ int main(){
     // else printf("not found");
     
     // Problem 7
-    insertNode(2);
-    insertNode(5);
-    insertNode(4);
-    insertNode(3);
-    insertNode(6);
-    insertNode(19);
-    insertNode(8);
+    // insertNode(2);
+    // insertNode(5);
+    // insertNode(4);
+    // insertNode(3);
+    // insertNode(6);
+    // insertNode(19);
+    // insertNode(8);
+    // printf("before: "); inOrder(root);
+    // printf("\n");
+    // addToAll(2, root);
+    // printf("after:  "); inOrder(root);
 
-    printf("before: "); inOrder(root);
-    printf("\n");
-    addToAll(2, root);
-    printf("after:  "); inOrder(root);
+    // Problem 8
+    insertNode(1);
+    insertNode(2);
+    insertNode(3);
+    insertNode(4);
+    insertNode(5);
+    
+    int* sum = (int*)malloc(sizeof(int));
+    int* count = (int*)malloc(sizeof(int));
+    avg(root, sum, count);
+    float average = ((float)*sum/ *count);
+    printf("average: %f \n", average);
+    printAboveAvg(root, average);
 
     printf("\n");
     return 0;
