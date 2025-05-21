@@ -87,6 +87,14 @@ int search(int data, TreeNode* currentNode, int stepCounter){
     if(data > currentNode->data) return search(data, currentNode->right, stepCounter+1);
 }
 
+TreeNode* searchNode(int data, TreeNode* currentNode){
+    if(currentNode == NULL) return NULL;
+    if(currentNode->data == data) return currentNode;
+
+    if(data < currentNode->data) return searchNode(data, currentNode->left);
+    if(data > currentNode->data) return searchNode(data, currentNode->right);
+}
+
 int main(){
     // Problem 1
     // insertNode(5);
@@ -118,6 +126,18 @@ int main(){
     // printf("%d ", evenCounter);
 
     // Problem 5
+    // insertNode(2);
+    // insertNode(5);
+    // insertNode(4);
+    // insertNode(3);
+    // insertNode(6);
+    // insertNode(19);
+    // insertNode(8);
+    // int result = search(19, root, 0);
+    // if(result != -1) printf("found in %d steps.", result);
+    // else printf("not found");
+
+    // Problem 6
     insertNode(2);
     insertNode(5);
     insertNode(4);
@@ -125,8 +145,9 @@ int main(){
     insertNode(6);
     insertNode(19);
     insertNode(8);
-    int result = search(19, root, 0);
-    if(result != -1) printf("found in %d steps.", result);
+
+    TreeNode* result = searchNode(8, root);
+    if(result != NULL) inOrder(result);
     else printf("not found");
     
     printf("\n");
