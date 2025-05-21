@@ -95,6 +95,14 @@ TreeNode* searchNode(int data, TreeNode* currentNode){
     if(data > currentNode->data) return searchNode(data, currentNode->right);
 }
 
+void addToAll(int n, TreeNode* currentNode){
+    if(currentNode == NULL) return;
+
+    addToAll(n, currentNode->left);
+    currentNode->data += n;
+    addToAll(n, currentNode->right);
+}
+
 int main(){
     // Problem 1
     // insertNode(5);
@@ -138,6 +146,18 @@ int main(){
     // else printf("not found");
 
     // Problem 6
+    // insertNode(2);
+    // insertNode(5);
+    // insertNode(4);
+    // insertNode(3);
+    // insertNode(6);
+    // insertNode(19);
+    // insertNode(8);
+    // TreeNode* result = searchNode(8, root);
+    // if(result != NULL) inOrder(result);
+    // else printf("not found");
+    
+    // Problem 7
     insertNode(2);
     insertNode(5);
     insertNode(4);
@@ -146,10 +166,11 @@ int main(){
     insertNode(19);
     insertNode(8);
 
-    TreeNode* result = searchNode(8, root);
-    if(result != NULL) inOrder(result);
-    else printf("not found");
-    
+    printf("before: "); inOrder(root);
+    printf("\n");
+    addToAll(2, root);
+    printf("after:  "); inOrder(root);
+
     printf("\n");
     return 0;
 }
