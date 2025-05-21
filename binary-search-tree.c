@@ -190,19 +190,19 @@ int main(){
     // printf("after:  "); inOrder(root);
 
     // Problem 8
-    insertNode(1);
-    insertNode(2);
-    insertNode(3);
-    insertNode(4);
-    insertNode(5);
-    
-    int* sum = (int*)malloc(sizeof(int));
-    int* count = (int*)malloc(sizeof(int));
-    avg(root, sum, count);
-    float average = ((float)*sum/ *count);
-    printf("average: %f \n", average);
-    printAboveAvg(root, average);
+    // insertNode(1);
+    // insertNode(2);
+    // insertNode(3);
+    // insertNode(4);
+    // insertNode(5);
+    // int* sum = (int*)malloc(sizeof(int));
+    // int* count = (int*)malloc(sizeof(int));
+    // avg(root, sum, count);
+    // float average = ((float)*sum/ *count);
+    // printf("average: %f \n", average);
+    // printAboveAvg(root, average);
 
+    
     printf("\n");
     return 0;
 }
