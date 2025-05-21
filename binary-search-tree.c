@@ -79,6 +79,14 @@ void howManyEvens(TreeNode* currentNode){
     howManyEvens(currentNode->right);
 }
 
+int search(int data, TreeNode* currentNode, int stepCounter){
+    if(currentNode == NULL) return -1;
+    if(currentNode->data == data) return stepCounter;
+
+    if(data < currentNode->data) return search(data, currentNode->left, stepCounter+1);
+    if(data > currentNode->data) return search(data, currentNode->right, stepCounter+1);
+}
+
 int main(){
     // Problem 1
     // insertNode(5);
@@ -109,6 +117,18 @@ int main(){
     // howManyEvens(root);
     // printf("%d ", evenCounter);
 
+    // Problem 5
+    insertNode(2);
+    insertNode(5);
+    insertNode(4);
+    insertNode(3);
+    insertNode(6);
+    insertNode(19);
+    insertNode(8);
+    int result = search(19, root, 0);
+    if(result != -1) printf("found in %d steps.", result);
+    else printf("not found");
+    
     printf("\n");
     return 0;
 }
