@@ -62,6 +62,23 @@ void postOrder(TreeNode* currentNode){
     printf("%d ", currentNode->data);
 }
 
+void reverseOrder(TreeNode* currentNode){
+    if(currentNode == NULL) return;
+
+    reverseOrder(currentNode->right);
+    printf("%d ", currentNode->data);
+    reverseOrder(currentNode->left);
+}
+
+int evenCounter = 0;
+void howManyEvens(TreeNode* currentNode){
+    if(currentNode == NULL) return;
+
+    howManyEvens(currentNode->left);
+    if((currentNode->data % 2) == 0) evenCounter += 1;
+    howManyEvens(currentNode->right);
+}
+
 int main(){
     // Problem 1
     // insertNode(5);
@@ -70,6 +87,17 @@ int main(){
     // insertNode(4);
     // insertNode(2);
     // inOrder(root);
+
+    // Problem 3
+    // insertNode(2);
+    // insertNode(5);
+    // insertNode(4);
+    // insertNode(3);
+    // insertNode(6);
+    // insertNode(19);
+    // insertNode(8);
+    // reverseOrder(root);
+
 
     printf("\n");
     return 0;
