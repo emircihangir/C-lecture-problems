@@ -98,6 +98,16 @@ int main(){
     // insertNode(8);
     // reverseOrder(root);
 
+    // Problem 4
+    // insertNode(2);
+    // insertNode(5);
+    // insertNode(4);
+    // insertNode(3);
+    // insertNode(6);
+    // insertNode(19);
+    // insertNode(8);
+    // howManyEvens(root);
+    // printf("%d ", evenCounter);
 
     printf("\n");
     return 0;
